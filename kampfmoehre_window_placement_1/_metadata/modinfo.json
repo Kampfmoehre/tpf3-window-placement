@@ -1,0 +1,22 @@
+{
+    "authors": [
+        {
+            "name": "Kampfmoehre",
+            "role": "CREATOR"
+        }
+    ],
+    "description": "New entity windows open next to already pinned entity windows instead of on top of them in the top-right corner, like Transport Fever 2 did.\n\nWindows fill columns from the right screen edge. If there is enough vertical space (e.g. at 50% UI scale), a second row below is used first.",
+    "name": "Window Placement",
+    "summary": "Entity windows open next to pinned ones (TF2 style)",
+    "tags": [
+        "Script Mod"
+    ],
+    "url": "",
+    "localization": {
+        "de": {
+            "description": "Neue Objektfenster öffnen sich neben bereits angepinnten Fenstern statt darüber in der rechten oberen Ecke, so wie in Transport Fever 2.\n\nDie Fenster füllen Spalten vom rechten Bildschirmrand aus. Ist genug Platz nach unten (z. B. bei 50 % UI-Skalierung), wird zuerst eine zweite Reihe darunter belegt.",
+            "name": "Fensterplatzierung",
+            "summary": "Objektfenster öffnen sich neben angepinnten Fenstern (wie in TF2)"
+        }
+    }
+}
