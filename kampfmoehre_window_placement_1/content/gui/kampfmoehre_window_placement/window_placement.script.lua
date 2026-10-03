@@ -22,7 +22,7 @@
 -- scripts/construction/assetbuilderutil.script.lua).
 
 function data()
-	local VERSION = "0.1.0"
+	local VERSION = "0.1.1"
 
 	local react = ug_require "::/gui/main/react.lua"
 	local builtin = ug_require "::/gui/main/builtin.lua"
@@ -53,8 +53,16 @@ function data()
 	local MAX_ROWS = 4
 
 	---------------------------------------------------------------------------
-	-- Measuring helpers
+	-- Helpers
 	---------------------------------------------------------------------------
+	-- Builtins may be called as builtin.X{params} or builtin.X(react.ref(r), {params})
+	-- (see react.lua splitParams); the params table is always the last argument.
+	local function lastArg(...)
+		local n = select("#", ...)
+		if n == 0 then return nil end
+		return (select(n, ...))
+	end
+
 	local function screenSizePx()
 		local ok, size = pcall(api.gui.camera.getSize)
 		if ok and size and size.x and size.y and size.x > 0 and size.y > 0 then
@@ -220,7 +228,8 @@ function data()
 		local origWindow = builtin.Window
 		builtin._kampfmoehreWindowPlacementOrig = origWindow
 
-		builtin.Window = function(params)
+		builtin.Window = function(...)
+			local params = lastArg(...)
 			if type(params) == "table" and params.tool == "entityWindow" and params.id then
 				local id = params.id
 				local entry = windows[id]
@@ -256,7 +265,7 @@ function data()
 					end
 				end)
 			end
-			return origWindow(params)
+			return origWindow(...)
 		end
 		log.message("[window_placement] v" .. VERSION .. " builtin.Window wrapped")
 	end
